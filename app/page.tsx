@@ -12,7 +12,7 @@ type Pokefuta = {
   lat: number;
   lng: number;
   image_url: string;
-  visited: boolean; // ★追加
+  visited: boolean;
 };
 
 export default function Home() {

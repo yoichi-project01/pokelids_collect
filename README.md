@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ポケふたコレクター (PokeLids_Collector)
 
-## Getting Started
+全国47都道府県に設置されているポケモンのマンホール「ポケふた」を探して、写真を撮って、自分だけの図鑑を完成させる位置情報＆コレクションWebアプリです。
 
-First, run the development server:
+## 主な機能
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* **全国のポケふたマップ表示**
+  * 全国444箇所（2026年時点）のポケふたの位置をGoogle Maps上にピンで表示します。
+  * 現在地取得ボタンで、今いる場所の近くにあるポケふたをすぐに見つけられます。
+* **GPS連動チェックイン＆メダル判定(鋭意製作中)**
+  * アップロードした写真の**EXIF（位置情報）**を自動解析！
+  * 実際のポケふたの場所から100メートル以内で撮影された写真なら「🥇金メダル（現地チェックイン）」、それ以外やGPS情報がない画像なら「🥈銀メダル（写真チェックイン）」として判定します。
+* **図鑑（ギャラリー）モード＆フィルター機能**
+  * 地図モードと図鑑モードをワンタップで切り替え可能。
+  * 「未訪問」「金メダル」「都道府県別」など、様々な条件でピンや図鑑を瞬時に絞り込めます。
+* **47都道府県ごとのご当地掲示板(鋭意製作中)**
+  * 都道府県ごとの専用スレッド（動的ルーティングで実装）を用意。
+  * コレクター同士でリアルタイムな情報交換が可能です。
+* **クライアントサイドでの画像圧縮**
+  * スマホの高画質な写真でも、アップロード前にブラウザ側で自動圧縮し、通信量とストレージを節約します。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 使用技術
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* **Frontend**: Next.js (React), Tailwind CSS
+* **Backend / BaaS**: Supabase (Authentication, Database, Storage)
+* **Map**: Google Maps API (`@react-google-maps/api`)
+* **Libraries**: 
+  * `exifr` (写真のGPS位置情報解析)
+  * `browser-image-compression` (画像圧縮)
+  * `axios`, `cheerio` (※初期データ収集用スクレイピングに使用)
